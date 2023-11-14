@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "549482505852",
+    "project_id": "direct-pixel-369606",
+    "storage_bucket": "direct-pixel-369606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549482505852:android:03206ad235075a9176cbf9",
+        "android_client_info": {
+          "package_name": "com.example.coffeetectapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6XbtVBc8cS1Cty5zKQftTAkC1Hd79yXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549482505852:android:6ee4f08b9abb845b76cbf9",
+        "android_client_info": {
+          "package_name": "com.example.myapplication2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6XbtVBc8cS1Cty5zKQftTAkC1Hd79yXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
