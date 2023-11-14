@@ -75,8 +75,10 @@ dependencies {
 
     //Template
     implementation ("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.test.ext:junit:1.1.5")
     testImplementation("junit:junit:4.12")
     testImplementation("junit:junit:4.12")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    androidTestImplementation("junit:junit:4.12")
 
 }
