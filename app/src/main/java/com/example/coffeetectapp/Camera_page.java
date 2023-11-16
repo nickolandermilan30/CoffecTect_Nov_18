@@ -1,13 +1,9 @@
 package com.example.coffeetectapp;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -16,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -77,27 +72,15 @@ public class Camera_page extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
 
 
-       camera.setOnClickListener(view -> {
-                   // Launch Camera if we have permission
-                   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(cameraIntent, 1);
-                        } else {
-                            // Request camera permission if don't have
-                           requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
-                     }
-                    }
-
-               });
 
 
-       // camera.setOnClickListener(new View.OnClickListener() {
-        // @Override
-        //           public void onClick(View v) {
-        //            Intent intent = new Intent(Camera_page.this, Capture.class);
-        //          startActivity(intent);
-        //      }});
+        camera.setOnClickListener(new View.OnClickListener() {
+             @Override
+           public void onClick(View v) {
+            Intent intent = new Intent(Camera_page.this, Capture.class);
+          startActivity(intent);
+      }});
+
 
 
         gallery.setOnClickListener(new View.OnClickListener() {
@@ -260,7 +243,6 @@ public class Camera_page extends AppCompatActivity {
                             classifyImage(image);
                         } else {
                             // Handle the case where there was an issue loading the image from the gallery
-                            showAlertDialog("Error", "May problema sa pagkuha ng larawan mula sa gallery.");
                         }
                     } else if (data.getExtras() != null && data.getExtras().containsKey("data")) { // Bitmap mula sa camera
                         Bitmap image = (Bitmap) data.getExtras().get("data");
@@ -273,7 +255,6 @@ public class Camera_page extends AppCompatActivity {
                             classifyImage(image);
                         } else {
                             // Handle the case where the camera did not provide a valid image
-                            showAlertDialog("Error", "Walang valid na larawan na nakuha mula sa camera.");
                         }
                     }
                 }
@@ -283,16 +264,5 @@ public class Camera_page extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void showAlertDialog(String title, String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Pwede kang magdagdag ng ibang actions dito kung kailangan
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+
     }
-}

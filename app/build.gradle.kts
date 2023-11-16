@@ -46,11 +46,21 @@ dependencies {
     implementation ("androidx.camera:camera-core:1.1.0")
     implementation ("androidx.camera:camera-camera2:1.1.0")
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
+    implementation ("androidx.lifecycle:lifecycle-livedata:2.3.1")
+
+    implementation ("androidx.camera:camera-core:1.0.0")
+    implementation ("androidx.camera:camera-camera2:1.0.0")
+    implementation ("androidx.camera:camera-lifecycle:1.0.0")
+    implementation ("androidx.camera:camera-view:1.0.0")
+
 // Marker
     implementation ("androidx.camera:camera-core:1.1.0-alpha01")
     implementation ("androidx.camera:camera-camera2:1.1.0-alpha01")
     implementation ("androidx.camera:camera-lifecycle:1.1.0-alpha01")
     implementation ("androidx.camera:camera-view:1.1.0-alpha06")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("androidx.camera:camera-view:1.1.0-alpha01")
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
@@ -75,10 +85,8 @@ dependencies {
 
     //Template
     implementation ("com.github.bumptech.glide:glide:4.16.0")
-    implementation("androidx.test.ext:junit:1.1.5")
     testImplementation("junit:junit:4.12")
     testImplementation("junit:junit:4.12")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    androidTestImplementation("junit:junit:4.12")
 
 }

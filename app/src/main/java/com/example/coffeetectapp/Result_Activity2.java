@@ -27,7 +27,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 
-public class Result_Activity extends AppCompatActivity {
+public class Result_Activity2 extends AppCompatActivity {
 
     Button backr, saveButton;
     private boolean isSaving = false;
@@ -37,7 +37,7 @@ public class Result_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_result2);
 
         // Hide the action bar
         if (getSupportActionBar() != null) {
@@ -47,17 +47,16 @@ public class Result_Activity extends AppCompatActivity {
 
 
         TextView resultTextView = findViewById(R.id.resultTextView);
-        backr = findViewById(R.id.capagain);
         saveButton = findViewById(R.id.saveButton);
-        ImageView imageView = findViewById(R.id.resultImageView); // Add ImageView
+        ImageView imageView = findViewById(R.id.resultImageView);
 
-        // Retrieve the result from the Intent
+        // Retrieve the result and image path from the Intent
         String result = getIntent().getStringExtra("result");
         String imagePath = getIntent().getStringExtra("imagePath");
 
 
         // Set the result in the TextView
-        resultTextView.setText("Result: " + result);
+        resultTextView.setText(result);
 
         // Retrieve the image byte array from the Intent
         byte[] byteArray = getIntent().getByteArrayExtra("image");
@@ -67,14 +66,8 @@ public class Result_Activity extends AppCompatActivity {
             imageView.setImageBitmap(imageBitmap);
         }
 
-        backr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Result_Activity.this, Camera_page.class);
-                intent.putExtra("diseaseName", "SampleDiseaseName");
-                startActivity(intent);
-            }
-        });
+
+
 
         // ...
 
@@ -102,6 +95,7 @@ public class Result_Activity extends AppCompatActivity {
                         Bitmap imageBitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length, options);
 
 
+
                         // Set the text for disease and severity
                         resultTextView.setText(result);
 
@@ -112,7 +106,7 @@ public class Result_Activity extends AppCompatActivity {
                         SavedResult savedResult = new SavedResult(result, imageBitmap);
 
                         // Redirect to another activity (Folders)
-                        Intent intent = new Intent(Result_Activity.this, Folders.class);
+                        Intent intent = new Intent(Result_Activity2.this, Folders.class);
                         startActivity(intent);
 // Check if `History` is full and add to the appropriate history list
                         int maxSavedResults = 10;
@@ -160,7 +154,7 @@ public class Result_Activity extends AppCompatActivity {
             }
 
             private void showMaxSavedResultsDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Result_Activity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Result_Activity2.this);
                 builder.setTitle("Maximum Saved Results Reached");
                 builder.setMessage("You have reached the maximum limit of saved results (10). You can clear some results to save new ones.");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -180,7 +174,7 @@ public class Result_Activity extends AppCompatActivity {
             }
 
             private void showNoInternetDialog() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Result_Activity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Result_Activity2.this);
                 builder.setTitle("No Internet Connection");
                 builder.setMessage("Please check your internet connection and try again.");
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -256,7 +250,7 @@ public class Result_Activity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
                 // Handle the failure to upload the image
-                Toast.makeText(Result_Activity.this, "Failed to save the image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Result_Activity2.this, "Failed to save the image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

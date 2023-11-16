@@ -22,7 +22,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:text="Disease"
-            android:textColor="@color/dark_late_gray" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/percentageTextView"
@@ -35,7 +35,7 @@
             android:maxLines="1"
             android:singleLine="true"
             android:text="Percentage"
-            android:textColor="@color/dark_late_gray" />
+            android:textColor="@color/black" />
 
 
 

@@ -1,49 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Capture">
-
-    <TextureView
-        android:id="@+id/textureView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.005" />
-
-
     <View
-        android:id="@+id/view3"
-        android:layout_width="391dp"
-        android:layout_height="222dp"
-        android:layout_marginTop="600dp"
-        android:background="@drawable/login_white_backg5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:id="@+id/blackOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="623dp"
+        android:background="@android:color/black" />
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="623dp">
+
+        <TextView
+            android:id="@+id/resultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="634dp"
+            android:layout_marginBottom="14dp"
+            android:visibility="invisible" />
+    </androidx.camera.view.PreviewView>
+
+    <!-- Black overlay outside markerLayout -->
+
+    <RelativeLayout
+        android:id="@+id/markerLayout"
+        android:layout_width="333dp"
+        android:layout_height="296dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent">
+
+        <!-- Fixed-size square marker -->
+        <ImageView
+            android:id="@+id/markerImageView"
+            android:layout_width="299dp"
+            android:layout_height="272dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/frame_background"
+            android:visibility="visible" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/captureButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/ic_baseline_camera_24"
-        android:backgroundTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.72" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Capture"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <ImageButton
+        android:id="@+id/customDialogButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/btn" />
+
+</RelativeLayout>
