@@ -7,7 +7,6 @@
     import android.view.View;
     import android.widget.ArrayAdapter;
     import android.widget.ImageButton;
-    import android.widget.LinearLayout;
     import android.widget.LinearLayout.LayoutParams;
     import android.widget.ListView;
     import android.widget.TextView;
@@ -165,10 +164,6 @@
                     new DiseaseLegend("Sooty Mold", android.graphics.Color.parseColor("#8C33FF"))
             };
 
-            // Get the LinearLayout from the legend_dialog layout
-            LinearLayout legendLayout = view.findViewById(R.id.legendLayout);
-            LinearLayout paletteLayout = view.findViewById(R.id.paletteLayout);
-
             // Add legend TextViews and palette color views dynamically
             for (DiseaseLegend diseaseLegend : diseaseLegends) {
                 TextView legendTextView = new TextView(this);
@@ -180,15 +175,12 @@
                 params.setMargins(0, 0, 0, 8); // Adjust margin as needed
                 legendTextView.setLayoutParams(params);
 
-                // Add TextView to legendLayout
-                legendLayout.addView(legendTextView);
 
                 // Add color views to paletteLayout
                 View colorView = new View(this);
                 colorView.setId(View.generateViewId());
                 colorView.setLayoutParams(new LayoutParams(24, 24)); // Adjust size as needed
                 colorView.setBackgroundColor(diseaseLegend.getColor());
-                paletteLayout.addView(colorView);
             }
 
             // Set a button in the dialog to close it
@@ -212,7 +204,7 @@
             HashMap<String, Integer> diseaseColorMap = new HashMap<>();
 
             // Assign colors to each disease
-            diseaseColorMap.put("Cercospora", android.graphics.Color.parseColor("#FF5733")); // Orange
+            diseaseColorMap.put("Cercospora", android.graphics.Color.parseColor("#FF5733"));
             diseaseColorMap.put("Leaf Miner", android.graphics.Color.parseColor("#3366FF"));
             diseaseColorMap.put("Leaf Rust", android.graphics.Color.parseColor("#FF33CC"));
             diseaseColorMap.put("Phoma", android.graphics.Color.parseColor("#FFFF33"));
