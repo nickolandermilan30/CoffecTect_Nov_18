@@ -15,15 +15,10 @@ public class DiseaseLegend {
     };
 
     public DiseaseLegend(String name, int color) {
-        this.name = name;
-        this.color = color;
     }
 
     // Constructor to use the custom color palette
     public DiseaseLegend(String name, boolean useCustomColorPalette) {
-        this.name = name;
-        // Get the color from the custom palette if specified; otherwise, use the default color
-        this.color = useCustomColorPalette ? CUSTOM_COLORS[0] : android.graphics.Color.BLACK;
     }
 
     public String getName() {
