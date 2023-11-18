@@ -15,10 +15,13 @@
     import androidx.appcompat.app.AppCompatActivity;
 
     import com.github.mikephil.charting.charts.PieChart;
+    import com.github.mikephil.charting.data.Entry;
     import com.github.mikephil.charting.data.PieData;
     import com.github.mikephil.charting.data.PieDataSet;
     import com.github.mikephil.charting.data.PieEntry;
     import com.github.mikephil.charting.formatter.PercentFormatter;
+    import com.github.mikephil.charting.highlight.Highlight;
+    import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
     import java.util.ArrayList;
     import java.util.HashMap;
@@ -138,7 +141,6 @@
                 String addedDisease = intent.getStringExtra("diseaseName");
                 if (addedDisease != null) {
                     addDiseaseToList(addedDisease);
-
                     // Save the updated disease list
                     saveDiseaseList();
                 }
@@ -199,44 +201,44 @@
             // Create entries for the pie chart
             ArrayList<PieEntry> entries = new ArrayList<>();
 
-            // Create a map to store the count for each disease and its corresponding color
-            HashMap<String, Integer> diseaseCountMap = new HashMap<>();
-            HashMap<String, Integer> diseaseColorMap = new HashMap<>();
+            // Create a map to store the count for each base disease and its corresponding color
+            HashMap<String, Integer> baseDiseaseCountMap = new HashMap<>();
+            HashMap<String, Integer> baseDiseaseColorMap = new HashMap<>();
 
-            // Assign colors to each disease
-            diseaseColorMap.put("Cercospora", android.graphics.Color.parseColor("#FF5733"));
-            diseaseColorMap.put("Leaf Miner", android.graphics.Color.parseColor("#3366FF"));
-            diseaseColorMap.put("Leaf Rust", android.graphics.Color.parseColor("#FF33CC"));
-            diseaseColorMap.put("Phoma", android.graphics.Color.parseColor("#FFFF33"));
-            diseaseColorMap.put("Sooty Mold", android.graphics.Color.parseColor("#8C33FF"));
-            diseaseColorMap.put("Healthy Leaf", android.graphics.Color.parseColor("#33FF57"));
+            // Assign colors to each base disease
+            baseDiseaseColorMap.put("Cercospora", android.graphics.Color.parseColor("#FF5733"));
+            baseDiseaseColorMap.put("Leaf Miner", android.graphics.Color.parseColor("#3366FF"));
+            baseDiseaseColorMap.put("Leaf Rust", android.graphics.Color.parseColor("#FF33CC"));
+            baseDiseaseColorMap.put("Phoma", android.graphics.Color.parseColor("#FFFF33"));
+            baseDiseaseColorMap.put("Sooty Mold", android.graphics.Color.parseColor("#8C33FF"));
+            baseDiseaseColorMap.put("Healthy Leaf", android.graphics.Color.parseColor("#33FF57"));
 
-            // Count occurrences of each disease
+            // Count occurrences of each base disease
             for (String disease : diseaseList) {
                 String baseDisease = getBaseDisease(disease);
-                if (diseaseCountMap.containsKey(baseDisease)) {
+                if (baseDiseaseCountMap.containsKey(baseDisease)) {
                     // If the base disease is already in the map, increment its count
-                    int count = diseaseCountMap.get(baseDisease);
-                    diseaseCountMap.put(baseDisease, count + 1);
+                    int count = baseDiseaseCountMap.get(baseDisease);
+                    baseDiseaseCountMap.put(baseDisease, count + 1);
                 } else {
                     // If the base disease is not in the map, add it with count 1
-                    diseaseCountMap.put(baseDisease, 1);
+                    baseDiseaseCountMap.put(baseDisease, 1);
                 }
             }
 
-            // Calculate total count of diseases
-            int totalDiseases = 0;
-            for (int count : diseaseCountMap.values()) {
-                totalDiseases += count;
+            // Calculate total count of base diseases
+            int totalBaseDiseases = 0;
+            for (int count : baseDiseaseCountMap.values()) {
+                totalBaseDiseases += count;
             }
 
-            // Calculate the percentage for each disease based on a constant total (TOTAL_PERCENTAGE)
-            for (Map.Entry<String, Integer> entry : diseaseCountMap.entrySet()) {
+            // Calculate the percentage for each base disease based on a constant total (TOTAL_PERCENTAGE)
+            for (Map.Entry<String, Integer> entry : baseDiseaseCountMap.entrySet()) {
                 String baseDisease = entry.getKey();
                 int count = entry.getValue();
-                int color = diseaseColorMap.containsKey(baseDisease) ? diseaseColorMap.get(baseDisease) : android.graphics.Color.BLACK;
+                int color = baseDiseaseColorMap.containsKey(baseDisease) ? baseDiseaseColorMap.get(baseDisease) : android.graphics.Color.BLACK;
 
-                float percentage = (count / (float) totalDiseases) * TOTAL_PERCENTAGE;
+                float percentage = (count / (float) totalBaseDiseases) * TOTAL_PERCENTAGE;
                 entries.add(new ColoredPieEntry(percentage, baseDisease, color));
             }
 
@@ -244,10 +246,9 @@
             // Create a data set
             PieDataSet dataSet = new PieDataSet(entries, "");
 
-            // Set colors for the data set based on the color assigned for each disease
+            // Set colors for the data set based on the color assigned for each base disease
             int[] colors = entries.stream().mapToInt(entry -> ((ColoredPieEntry) entry).getColor()).toArray();
             dataSet.setColors(colors);
-
 
             // Create a data object from the data set
             PieData data = new PieData(dataSet);
@@ -268,13 +269,38 @@
             dataSet.setValueTextSize(10f); // Adjust the size as needed
             dataSet.setValueTextColor(android.graphics.Color.BLACK); // Set text color to black
 
+            // Disable drawing values (labels) outside the pie chart
+            data.setDrawValues(false);
+
+            // Disable drawing values (labels) on the pie chart
+            dataSet.setDrawValues(false);
+
+            // Enable drawing values (labels) on the pie chart only when selected
+            dataSet.setDrawValues(true);
+
+            // Set a listener to handle pie chart slice clicks
+            pieChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+                @Override
+                public void onValueSelected(Entry e, Highlight h) {
+                    // Display the label for the selected slice
+                    pieChart.setCenterText(entries.get((int) h.getX()).getLabel());
+                }
+
+                @Override
+                public void onNothingSelected() {
+                    // Reset the center text when nothing is selected
+                    pieChart.setCenterText("");
+                }
+            });
+
             // Refresh the pie chart
             pieChart.invalidate();
         }
 
 
 
-        // Helper method to get the base disease name
+
+            // Helper method to get the base disease name
         private String getBaseDisease(String disease) {
             // Implement your logic to extract the base disease name
             // Customize this logic based on your disease naming conventions.
