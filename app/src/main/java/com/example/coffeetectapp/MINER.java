@@ -58,7 +58,7 @@ public class MINER extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MINER.this, History.class);
+                Intent intent = new Intent(MINER.this, Folders.class);
                 startActivity(intent);
                 }
         });

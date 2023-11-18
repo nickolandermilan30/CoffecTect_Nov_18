@@ -23,6 +23,14 @@ public class DiseaseData {
         return pieEntries;
     }
 
+    public static List<String> getDiseaseNames() {
+        List<String> diseaseNames = new ArrayList<>();
+        for (PieEntry entry : pieEntries) {
+            diseaseNames.add(entry.getLabel());
+        }
+        return diseaseNames;
+    }
+
     public static void clearPieEntries() {
         if (pieEntries != null) {
             pieEntries.clear();

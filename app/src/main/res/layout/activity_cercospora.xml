@@ -65,7 +65,8 @@ Coffee leaf cercospora typically starts as small, yellowish lesions that gradual
 The fungus Cercospora coffeicola survives on infected plant debris and can be spread through wind, rain splashes, or contaminated tools. Favorable conditions for the disease include high humidity, frequent rain, and warm temperatures.
 Management of coffee leaf cercospora involves a combination of cultural and chemical control measures. This includes pruning and removing infected leaves, applying appropriate fungicides, improving cultural practices to reduce humidity and improve air circulation, and maintaining overall plant health through proper nutrition and care. Regular monitoring and early detection of the disease are crucial for effective control. Consulting with agricultural specialists or plant pathologists can provide further guidance on specific control strategies based on the severity of the infection and local conditions.
 "
-            android:textColor="#01BB7D"
+            android:textColor="#000000"
+            android:justificationMode="inter_word"
             android:textStyle="bold" />
 
 

@@ -56,7 +56,7 @@ public class RUST extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RUST.this, History.class);
+                Intent intent = new Intent(RUST.this, Folders.class);
                 startActivity(intent);
                 }
         });

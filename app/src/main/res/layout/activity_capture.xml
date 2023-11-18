@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bckg"
     tools:context=".Capture">
+
     <View
         android:id="@+id/blackOverlay"
         android:layout_width="match_parent"
@@ -24,33 +26,33 @@
             android:visibility="invisible" />
     </androidx.camera.view.PreviewView>
 
-    <!-- Black overlay outside markerLayout -->
 
     <RelativeLayout
         android:id="@+id/markerLayout"
-        android:layout_width="333dp"
-        android:layout_height="296dp"
+        android:layout_width="352dp"
+        android:layout_height="514dp"
         android:layout_centerInParent="true"
         android:background="@android:color/transparent">
 
         <!-- Fixed-size square marker -->
         <ImageView
             android:id="@+id/markerImageView"
-            android:layout_width="299dp"
-            android:layout_height="272dp"
+            android:layout_width="318dp"
+            android:layout_height="370dp"
             android:layout_centerInParent="true"
             android:src="@drawable/frame_background"
             android:visibility="visible" />
     </RelativeLayout>
 
-    <Button
+    <ImageButton
         android:id="@+id/captureButton"
         android:layout_width="wrap_content"
+        android:background="@drawable/design5"
         android:layout_height="wrap_content"
-        android:text="Capture"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="25dp"
+        android:text="Capture" />
 
     <ImageButton
         android:id="@+id/customDialogButton"
@@ -61,5 +63,6 @@
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
         android:background="@drawable/btn" />
+
 
 </RelativeLayout>

@@ -15,7 +15,7 @@
             <!-- Set the stroke (border) properties -->
             <stroke
                 android:width="2dp"
-                android:color="#D8D8D8" />
+                android:color="@color/green" />
         </shape>
     </item>
 

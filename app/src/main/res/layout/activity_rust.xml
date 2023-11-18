@@ -62,7 +62,8 @@
             android:text="Coffee leaf rust, also known as Hemileia vastatrix, is a devastating fungal disease that affects coffee plants. It is one of the most significant and economically damaging diseases in the coffee industry. Coffee leaf rust primarily targets the leaves of coffee plants, but it can also infect young stems and fruit, leading to significant crop loss if left unchecked.
 Coffee leaf rust is caused by the fungus Hemileia vastatrix. It spreads through windborne spores and can be easily transmitted from plant to plant. The disease typically starts with the appearance of small, yellowish-orange powdery spots on the underside of the coffee plant leaves. These spots, known as pustules, contain masses of rust-colored spores. As the infection progresses, the pustules expand and merge, causing the leaves to turn yellow, wither, and eventually drop prematurely.
 The impact of coffee leaf rust on coffee plants is twofold. First, it weakens the plants by reducing their ability to photosynthesize, leading to a decrease in vigor and productivity. Second, it affects the quality of the coffee beans, resulting in reduced cup quality and market value."
-            android:textColor="#01BB7D"
+            android:textColor="#000000"
+            android:justificationMode="inter_word"
             android:textStyle="bold" />
 
 

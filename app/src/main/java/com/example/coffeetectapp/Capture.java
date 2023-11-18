@@ -41,6 +41,9 @@ import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 public class Capture extends AppCompatActivity {
 
@@ -52,14 +55,16 @@ public class Capture extends AppCompatActivity {
     private float lastX, lastY;
     private boolean isResizing = false;
 
+    private final Semaphore cameraSemaphore = new Semaphore(1);
+    private final ExecutorService cameraExecutor = Executors.newSingleThreadExecutor();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_capture);
-
         startCamera();
 
-        Button captureButton = findViewById(R.id.captureButton);
+        ImageButton captureButton = findViewById(R.id.captureButton);
         captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,26 +181,36 @@ public class Capture extends AppCompatActivity {
     }
 
     private void takePhoto() {
-        if (imageCapture != null) {
-            File photoFile = createPhotoFile();
+        // Acquire the semaphore to ensure exclusive access to the camera
+        if (cameraSemaphore.tryAcquire()) {
+            if (imageCapture != null) {
+                File photoFile = createPhotoFile();
 
-            ImageCapture.OutputFileOptions outputFileOptions =
-                    new ImageCapture.OutputFileOptions.Builder(photoFile).build();
+                ImageCapture.OutputFileOptions outputFileOptions =
+                        new ImageCapture.OutputFileOptions.Builder(photoFile).build();
 
-            imageCapture.takePicture(outputFileOptions, ContextCompat.getMainExecutor(this),
-                    new ImageCapture.OnImageSavedCallback() {
-                        @Override
-                        public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
-                            Bitmap capturedImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                            Bitmap croppedImage = cropToMarkerBounds(capturedImage);
-                            classifyImage(croppedImage, photoFile);
-                        }
+                imageCapture.takePicture(outputFileOptions, cameraExecutor,
+                        new ImageCapture.OnImageSavedCallback() {
+                            @Override
+                            public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
+                                Bitmap capturedImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                                Bitmap croppedImage = cropToMarkerBounds(capturedImage);
+                                classifyImage(croppedImage, photoFile);
+                                // Release the semaphore after the image is processed
+                                cameraSemaphore.release();
+                            }
 
-                        @Override
-                        public void onError(@NonNull ImageCaptureException exception) {
-                            exception.printStackTrace();
-                        }
-                    });
+                            @Override
+                            public void onError(@NonNull ImageCaptureException exception) {
+                                exception.printStackTrace();
+                                // Release the semaphore in case of an error
+                                cameraSemaphore.release();
+                            }
+                        });
+            }
+        } else {
+            // Inform the user that the camera is currently busy
+            Toast.makeText(this, "Camera is busy, please wait", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -227,8 +242,6 @@ public class Capture extends AppCompatActivity {
         // Create a new Bitmap with the cropped area
         return Bitmap.createBitmap(originalBitmap, left, top, croppedWidth, croppedHeight);
     }
-
-// ...
 
     private void classifyImage(Bitmap image, File photoFile) {
         try {
@@ -270,7 +283,7 @@ public class Capture extends AppCompatActivity {
             String topPrediction = classes[maxConfidenceIndex];
 
             resultTextView.setVisibility(View.VISIBLE);
-            resultTextView.setText(topPrediction); // Ito ang nilagay ko
+            resultTextView.setText(topPrediction);
             saveResultAndImagePath(topPrediction, photoFile.getAbsolutePath());
 
             Intent intent = new Intent(Capture.this, Result_Activity2.class);
@@ -286,9 +299,6 @@ public class Capture extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
 
     private int getMaxConfidenceIndex(float[] array) {
         int maxIndex = 0;
@@ -349,6 +359,10 @@ public class Capture extends AppCompatActivity {
     }
 
     private void saveResultAndImagePath(String prediction, String imagePath) {
-        Toast.makeText(this, "Prediction: " + prediction + "\nImage Path: " + imagePath, Toast.LENGTH_LONG).show();
-    }
-}
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(Capture.this, "Prediction: " + prediction + "\nImage Path: " + imagePath, Toast.LENGTH_LONG).show();
+            }
+        });
+    }}

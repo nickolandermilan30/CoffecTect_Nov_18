@@ -58,7 +58,7 @@ public class SOOTY_MOLD extends AppCompatActivity {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SOOTY_MOLD.this, History.class);
+                Intent intent = new Intent(SOOTY_MOLD.this, Folders.class);
                 startActivity(intent);
                 }
         });

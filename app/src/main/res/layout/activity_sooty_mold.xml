@@ -66,7 +66,8 @@ To treat coffee leaf sooty mold, it is important to address the insect infestati
 Additionally, improving cultural practices such as proper pruning, maintaining good airflow, and practicing good hygiene by removing and destroying infected leaves can help reduce the spread of sooty mold and prevent future infestations.
 Regular monitoring of the coffee plants is essential to detect the presence of both the insects and sooty mold at an early stage. Consultation with agricultural specialists or entomologists can provide specific recommendations for controlling the insect infestation and managing coffee leaf sooty mold effectively.
 "
-            android:textColor="#01BB7D"
+            android:textColor="#000000"
+            android:justificationMode="inter_word"
             android:textStyle="bold" />
 
 

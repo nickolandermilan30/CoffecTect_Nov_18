@@ -5,10 +5,24 @@ xmlns:tools="http://schemas.android.com/tools"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@drawable/img_3"
+android:background="@drawable/bckg"
 tools:context=".Calendar">
 
-<TextView
+  <ImageButton
+      android:id="@+id/legendButton"
+      android:layout_width="42dp"
+      android:layout_height="42dp"
+      android:layout_gravity="end"
+      android:layout_margin="16dp"
+      android:background="@drawable/btn"
+      app:layout_constraintBottom_toTopOf="@+id/imageView2"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.967"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/backButton"
+      app:layout_constraintVertical_bias="0.406" />
+
+  <TextView
     android:id="@+id/textView"
     android:layout_width="143dp"
     android:layout_height="87dp"
@@ -41,18 +55,18 @@ tools:context=".Calendar">
 
   <!-- TextView for displaying category and percentage -->
 
+
   <com.github.mikephil.charting.charts.PieChart
       android:id="@+id/graphBarChart"
-      android:layout_width="330dp"
-      android:layout_height="190dp"
+      android:layout_width="313dp"
+      android:layout_height="222dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.492"
+      app:layout_constraintHorizontal_bias="0.163"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView"
-      app:layout_constraintVertical_bias="0.047"
+      app:layout_constraintVertical_bias="0.034"
       tools:ignore="MissingConstraints" />
-
 
   <ListView
       android:id="@+id/diseaseListView"
@@ -60,9 +74,10 @@ tools:context=".Calendar">
       android:layout_height="237dp"
       app:layout_constraintBottom_toTopOf="@+id/imageView2"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.228"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/graphBarChart"
-      app:layout_constraintVertical_bias="0.12"
+      app:layout_constraintVertical_bias="0.056"
       tools:ignore="MissingConstraints" />
 
   <Button
@@ -80,7 +95,7 @@ tools:context=".Calendar">
       app:layout_constraintVertical_bias="0.741" />
 
   <Button
-      android:id="@+id/sortButton"
+      android:id="@+id/generatePieChartButton"
       android:layout_width="137dp"
       android:layout_height="42dp"
       android:text="Load chart"

@@ -64,7 +64,8 @@
 The adult coffee leaf miner is a tiny, silvery-white moth with a wingspan of approximately 4-6 mm. However, it is the larvae (caterpillars) of the moth that cause damage to the coffee plant. The female moth lays eggs on the underside of coffee leaves, and upon hatching, the larvae tunnel into the leaf tissue and feed on the inner layers.
 The feeding activity of coffee leaf miner larvae creates serpentine or meandering tunnels within the leaves. These tunnels appear as winding, whitish or silvery lines that can be seen on the surface of affected coffee leaves. The feeding damage disrupts the normal leaf function, affecting the plant's ability to photosynthesize and potentially reducing coffee yields.
 Coffee leaf miner infestations are influenced by several factors, including climatic conditions, cultural practices, and the presence of natural enemies. Warm and humid conditions are favorable for their development and population growth."
-            android:textColor="#01BB7D"
+            android:textColor="#000000"
+            android:justificationMode="inter_word"
             android:textStyle="bold" />
 
 

@@ -60,6 +60,7 @@ dependencies {
     implementation ("androidx.camera:camera-lifecycle:1.1.0-alpha01")
     implementation ("androidx.camera:camera-view:1.1.0-alpha06")
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.google.firebase:firebase-inappmessaging:20.4.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
 
     implementation ("androidx.camera:camera-view:1.1.0-alpha01")

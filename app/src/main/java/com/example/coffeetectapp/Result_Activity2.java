@@ -1,4 +1,5 @@
 package com.example.coffeetectapp;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -49,6 +51,7 @@ public class Result_Activity2 extends AppCompatActivity {
         TextView resultTextView = findViewById(R.id.resultTextView);
         saveButton = findViewById(R.id.saveButton);
         ImageView imageView = findViewById(R.id.resultImageView);
+        backr = findViewById(R.id.capagain);
 
         // Retrieve the result and image path from the Intent
         String result = getIntent().getStringExtra("result");
@@ -68,8 +71,14 @@ public class Result_Activity2 extends AppCompatActivity {
 
 
 
-
-        // ...
+        backr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Result_Activity2.this, Camera_page.class);
+                intent.putExtra("diseaseName", "SampleDiseaseName");
+                startActivity(intent);
+            }
+        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +221,7 @@ public class Result_Activity2 extends AppCompatActivity {
 
         // Retrieve the disease name from the Intent
         String result = getIntent().getStringExtra("result");
+        Log.d("ResultActivity2", "Result from Intent: " + result);
 
         // Sanitize the result string for Firebase Storage filename
         String sanitizedResult = result.replaceAll("[^a-zA-Z0-9_]", "_");

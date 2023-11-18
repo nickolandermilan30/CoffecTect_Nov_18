@@ -13,7 +13,7 @@
         <shape android:shape="rectangle">
             <stroke
                 android:width="2dp"
-                android:color="#FFFFFF" /> <!-- Adjust color and width as needed -->
+                android:color="#62FF00" /> <!-- Adjust color and width as needed -->
         </shape>
     </item>
 </layer-list>

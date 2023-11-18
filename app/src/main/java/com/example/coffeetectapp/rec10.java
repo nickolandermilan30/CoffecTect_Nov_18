@@ -69,6 +69,6 @@ public class rec10 extends AppCompatActivity {
 
         TextView mostFrequentTextView = findViewById(R.id.mostFrequentTextView);
         if (diseaseName != null) {
-            mostFrequentTextView.setText("Most Frequent Disease: " + diseaseName);
+            mostFrequentTextView.setText("Result: " + diseaseName);
         }
     }}

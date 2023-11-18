@@ -65,7 +65,8 @@ The fungus Phoma spp. that causes coffee leaf phoma survives in infected plant d
 Managing coffee leaf phoma involves a combination of cultural and chemical control methods. This includes pruning and removing infected leaves, applying appropriate fungicides, improving cultural practices to reduce humidity and promote good airflow, and maintaining overall plant health through proper nutrition and care. Regular monitoring and early detection of the disease are crucial for effective control.
 It is important to consult with agricultural specialists or plant pathologists for an accurate diagnosis and tailored treatment recommendations, as specific fungicides and control strategies may vary based on the severity of the infection and local conditions.
 "
-            android:textColor="#01BB7D"
+            android:textColor="#000000"
+            android:justificationMode="inter_word"
             android:textStyle="bold" />
 
 

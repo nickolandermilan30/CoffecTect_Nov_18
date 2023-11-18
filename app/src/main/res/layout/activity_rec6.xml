@@ -24,40 +24,6 @@
         tools:ignore="MissingConstraints" />
 
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:background="@drawable/login_white_backg20"
-        app:layout_constraintBottom_toTopOf="@+id/mostFrequentTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:layout_width="87dp"
-        android:layout_height="140dp"
-        android:background="@drawable/display_logo"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="@+id/imageView5"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/leg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/help"
-        app:layout_constraintBottom_toBottomOf="@+id/mostFrequentImageView"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
-        app:layout_constraintHorizontal_bias="0.945"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/mostFrequentTextView"
         android:layout_width="310dp"
@@ -95,12 +61,12 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/green"
         android:text="Add to Chart"
-        app:layout_constraintBottom_toTopOf="@+id/leafRecommendationButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.271"
+        app:layout_constraintStart_toEndOf="@+id/leafRecommendationButton"
         app:layout_constraintTop_toBottomOf="@+id/mostFrequentTextView"
-        app:layout_constraintVertical_bias="0.285"
+        app:layout_constraintVertical_bias="0.478"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -112,45 +78,29 @@
         android:text="Recomendation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mostFrequentImageView"
-        app:layout_constraintVertical_bias="0.69"
+        app:layout_constraintVertical_bias="0.703"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/diseaseTextView"
         android:layout_width="130dp"
         android:layout_height="24dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="312dp"
         android:background="@drawable/login_white_backg17"
         android:fontFamily="@font/baloo_bhai_2"
         android:text="Disease"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/leg"
-        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintBottom_toTopOf="@+id/mostFrequentTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/severityTextView"
-        android:layout_width="130dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/login_white_backg18"
-        android:fontFamily="@font/baloo_bhai_2"
-        android:text="Severity"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/mostFrequentImageView"
-        app:layout_constraintEnd_toStartOf="@+id/leg"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/diseaseTextView"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.722"
         tools:ignore="MissingConstraints" />
 
 
