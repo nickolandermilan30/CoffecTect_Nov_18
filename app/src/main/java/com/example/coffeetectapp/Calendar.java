@@ -20,7 +20,6 @@
     import com.github.mikephil.charting.data.PieDataSet;
     import com.github.mikephil.charting.data.PieEntry;
     import com.github.mikephil.charting.formatter.PercentFormatter;
-    import com.github.mikephil.charting.utils.ColorTemplate;
 
     import java.util.ArrayList;
     import java.util.HashMap;
@@ -208,8 +207,17 @@
             // Create entries for the pie chart
             ArrayList<PieEntry> entries = new ArrayList<>();
 
-            // Create a map to store the count for each disease
+            // Create a map to store the count for each disease and its corresponding color
             HashMap<String, Integer> diseaseCountMap = new HashMap<>();
+            HashMap<String, Integer> diseaseColorMap = new HashMap<>();
+
+            // Assign colors to each disease
+            diseaseColorMap.put("Cercospora", android.graphics.Color.parseColor("#FF5733")); // Orange
+            diseaseColorMap.put("Leaf Miner", android.graphics.Color.parseColor("#3366FF"));
+            diseaseColorMap.put("Leaf Rust", android.graphics.Color.parseColor("#FF33CC"));
+            diseaseColorMap.put("Phoma", android.graphics.Color.parseColor("#FFFF33"));
+            diseaseColorMap.put("Sooty Mold", android.graphics.Color.parseColor("#8C33FF"));
+            diseaseColorMap.put("Healthy Leaf", android.graphics.Color.parseColor("#33FF57"));
 
             // Count occurrences of each disease
             for (String disease : diseaseList) {
@@ -232,15 +240,22 @@
 
             // Calculate the percentage for each disease based on a constant total (TOTAL_PERCENTAGE)
             for (Map.Entry<String, Integer> entry : diseaseCountMap.entrySet()) {
-                float percentage = (entry.getValue() / (float) totalDiseases) * TOTAL_PERCENTAGE;
-                entries.add(new PieEntry(percentage, entry.getKey()));
+                String baseDisease = entry.getKey();
+                int count = entry.getValue();
+                int color = diseaseColorMap.containsKey(baseDisease) ? diseaseColorMap.get(baseDisease) : android.graphics.Color.BLACK;
+
+                float percentage = (count / (float) totalDiseases) * TOTAL_PERCENTAGE;
+                entries.add(new ColoredPieEntry(percentage, baseDisease, color));
             }
+
 
             // Create a data set
             PieDataSet dataSet = new PieDataSet(entries, "");
 
-            // Set colors for the data set
-            dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+            // Set colors for the data set based on the color assigned for each disease
+            int[] colors = entries.stream().mapToInt(entry -> ((ColoredPieEntry) entry).getColor()).toArray();
+            dataSet.setColors(colors);
+
 
             // Create a data object from the data set
             PieData data = new PieData(dataSet);
@@ -264,6 +279,7 @@
             // Refresh the pie chart
             pieChart.invalidate();
         }
+
 
 
         // Helper method to get the base disease name
